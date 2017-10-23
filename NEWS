@@ -12,6 +12,16 @@ Changed
 
 Fixed
 
+[0.1.0] - 2017-10-23
+
+Added
+- The topic url translator form and javascript to the forum page.
+
+Changed
+- Columns alignment in css on the forum page.
+
+Fixed
+
 [0.0.2] - 2017-10-23
 
 Added
