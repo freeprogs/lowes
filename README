@@ -2,3 +2,6 @@
 __PROGRAM_NAME__ __PROGRAM_VERSION__
 
 Local web site with different features controlled through a browser.
+
+It makes a local service in systemd and opens port 5080. Then you can open
+http://localhost:5080 in your browser to use the application.
