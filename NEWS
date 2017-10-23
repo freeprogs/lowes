@@ -12,6 +12,17 @@ Changed
 
 Fixed
 
+[0.0.2] - 2017-10-23
+
+Added
+- Forum page with urls on it.
+
+Changed
+- Removed script on the index page.
+- Added a link from index page to the forum page.
+
+Fixed
+
 [0.0.1] - 2017-10-23
 
 Added
