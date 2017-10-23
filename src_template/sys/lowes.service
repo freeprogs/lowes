@@ -1,0 +1,9 @@
+[Unit]
+Description=__PROGRAM_NAME__ - Local web site application
+
+[Service]
+ExecStart=/usr/local/bin/__PROGRAM_NAME__-run.sh
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
