@@ -18,7 +18,11 @@
 */
 
 /**
- * Handler for a web-page which contains some text converter.
+ * Handler for a web-page which contains several text translators.
+ *
+ * - Topic url from new form to old form
+ * - Post message url from new form to old form
+ *
  */
 
 var forum = {
@@ -26,8 +30,11 @@ var forum = {
         var searcher = new NodeSearcher();
         var topicLog = searcher.searchById("forum-topic-log");
         var topicLogger = new LabelLogger(topicLog);
+        var msgPostLog = searcher.searchById("forum-msgpost-log");
+        var msgPostLogger = new LabelLogger(msgPostLog);
 
         topicLogger.write("ready");
+        msgPostLogger.write("ready");
         return true;
     },
 
@@ -48,6 +55,33 @@ var forum = {
         }
 
         var oldUrl = converter.topicNewToOld(input.value);
+        if (oldUrl) {
+            output.value = oldUrl;
+            logger.write("ok");
+        }
+        else {
+            logger.write("error");
+        }
+        return true;
+    },
+
+    transMsgPostUrl: function() {
+        var searcher = new NodeSearcher();
+
+        var input = searcher.searchById("forum-msgpost-in");
+        var output = searcher.searchById("forum-msgpost-out");
+        var log = searcher.searchById("forum-msgpost-log");
+
+        var converter = new UrlConverter();
+        var logger = new LabelLogger(log);
+
+        if (!input.value) {
+            input.value = "https://forum-beta.sakh.com/t?/p?/#reply-p?"
+            logger.write("ready");
+            return false;
+        }
+
+        var oldUrl = converter.msgPostNewToOld(input.value);
         if (oldUrl) {
             output.value = oldUrl;
             logger.write("ok");
@@ -101,6 +135,33 @@ UrlConverter.prototype.topicNewToOld = function(url) {
         return null;
     }
     var out = parts[1] + parts[2] + "?sub=" + parts[3];
+    return out;
+}
+
+UrlConverter.prototype.msgPostNewToOld = function(url) {
+    /**
+     * Convert forum msgpost url from new syntax to old syntax.
+     *
+     * @param {string} url The msgpost url in new format.
+     * @return {string} The msgpost url in old format.
+     *
+     * Example:
+     * In:
+     * https://forum-beta.sakh.com/123/456/#reply-456
+     * Out:
+     * https://forum.sakh.com/?sub=123&post=456#456
+     */
+    if (!url) {
+        return null;
+    }
+    var pat =
+        /^(https:\/\/forum)-beta(\.sakh\.com\/)(\d+)\/(\d+)\/#reply-(\d+)$/;
+    var parts = url.match(pat);
+    if (!parts) {
+        return null;
+    }
+    var out = parts[1] + parts[2] + "?sub=" + parts[3]
+        + "&post=" + parts[4] + "#" + parts[5];
     return out;
 }
 
