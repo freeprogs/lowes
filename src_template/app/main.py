@@ -35,3 +35,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html', title="__PROGRAM_NAME__")
+
+@app.route('/forum')
+def forum():
+    return render_template('forum.html', title="__PROGRAM_NAME__ - forum")
