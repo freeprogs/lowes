@@ -22,6 +22,7 @@
  *
  * - Topic url from new form to old form
  * - Post message url from new form to old form
+ * - An escaper for special characters in a url
  *
  */
 
@@ -32,9 +33,12 @@ var forum = {
         var topicLogger = new LabelLogger(topicLog);
         var msgPostLog = searcher.searchById("forum-msgpost-log");
         var msgPostLogger = new LabelLogger(msgPostLog);
+        var escapeUrlLog = searcher.searchById("forum-escapeurl-log");
+        var escapeUrlLogger = new LabelLogger(escapeUrlLog);
 
         topicLogger.write("ready");
         msgPostLogger.write("ready");
+        escapeUrlLogger.write("ready");
         return true;
     },
 
@@ -90,7 +94,34 @@ var forum = {
             logger.write("error");
         }
         return true;
-    }
+    },
+
+    escapeUrlForMessage: function() {
+        var searcher = new NodeSearcher();
+
+        var input = searcher.searchById("forum-escapeurl-in");
+        var output = searcher.searchById("forum-escapeurl-out");
+        var log = searcher.searchById("forum-escapeurl-log");
+
+        var escaper = new UrlEscaper();
+        var logger = new LabelLogger(log);
+
+        if (!input.value) {
+            input.value = "https://?"
+            logger.write("ready");
+            return false;
+        }
+
+        var escapedUrl = escaper.escapeCharsInPath(input.value, [":", ";"]);
+        if (escapedUrl) {
+            output.value = escapedUrl;
+            logger.write("ok");
+        }
+        else {
+            logger.write("error");
+        }
+        return true;
+    },
 }
 
 
@@ -165,6 +196,56 @@ UrlConverter.prototype.msgPostNewToOld = function(url) {
     return out;
 }
 
+
+function UrlEscaper() {
+}
+
+UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
+    /**
+     * Escape characters in the url from character list, excluding
+     * initial Internet protocol and domain name.
+     *
+     * @param {string} url The url with protocol, domain name and path.
+     * @param {array} escapeChars Characters for escaping in the url.
+     * @return {string} The url with escaped characters from the list.
+     *
+     * Example:
+     * In:
+     * https://www.domain.com:12345/abc;def:ghi [":", ";"]
+     * Out:
+     * https://www.domain.com:12345/abc%3Bdef%3Aghi
+     */
+    if (!url) {
+        return null;
+    }
+    if (!/^https?:\/\//.test(url)) {
+        return null;
+    }
+    if (escapeChars.length == 0) {
+        return url;
+    }
+    var out;
+    var patsplit = /^(https?:\/\/[^\/]+\/)(.*)$/;
+    var match = url.match(patsplit);
+    var part1 = match[1];
+    var part2 = match[2];
+    var part2escaped;
+
+    function escape(s, chars) {
+        var out = s;
+        var charCode;
+        for (var i = 0; i < chars.length; i++) {
+            charHexCode = chars[i].charCodeAt(0).toString(16).toUpperCase();
+            out = out.replace(new RegExp(chars[i], "g"), "%" + charHexCode);
+        }
+        return out;
+    }
+
+    part2escaped = escape(part2, escapeChars);
+    out = part1 + part2escaped;
+
+    return out;
+}
 
 function LabelLogger(node) {
     /**
