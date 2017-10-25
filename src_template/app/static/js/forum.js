@@ -247,6 +247,7 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     return out;
 }
 
+
 function LabelLogger(node) {
     /**
      * Create a logger writing to the node element.
