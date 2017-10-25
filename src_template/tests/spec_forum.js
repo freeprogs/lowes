@@ -17,6 +17,45 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-describe("Forum methods", function() {
+describe("UrlConverter methods", function() {
+
+    describe("Method topicNewToOld()", function() {
+
+        var func = (new UrlConverter()).topicNewToOld;
+
+        it("Returns new url on correct old url", function() {
+            var i = "https://forum-beta.sakh.com/1/";
+            var o = "https://forum.sakh.com/?sub=1";
+            assert.equal(func(i), o);
+        });
+
+        it("Returns null on undefined url", function() {
+            assert.isNull(func());
+        });
+
+        it("Returns null on empty url", function() {
+            assert.isNull(func(""));
+        });
+
+        it("Returns null on one character url", function() {
+            assert.isNull(func("x"));
+        });
+
+        it("Returns null on simple http url", function() {
+            var i = "http://forum-beta.sakh.com/1/";
+            assert.isNull(func(i));
+        });
+
+        it("Returns null on non-digits in topic number in url", function() {
+            var i = "https://forum-beta.sakh.com/123a456/";
+            assert.isNull(func(i));
+        });
+
+        it("Returns null on url without trailing slash", function() {
+            var i = "https://forum-beta.sakh.com/1";
+            assert.isNull(func(i));
+        });
+
+    });
 
 });
