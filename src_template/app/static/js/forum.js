@@ -218,6 +218,9 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     if (!url) {
         return null;
     }
+    if (!escapeChars) {
+        return null;
+    }
     if (!/^https?:\/\//.test(url)) {
         return null;
     }
