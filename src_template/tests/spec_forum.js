@@ -58,4 +58,33 @@ describe("UrlConverter methods", function() {
 
     });
 
+    describe("Method msgPostNewToOld()", function() {
+
+        var func = (new UrlConverter()).msgPostNewToOld;
+
+        it("Returns null on undefined url", function() {
+            assert.isNull(func());
+        });
+
+        it("Returns null on empty url", function() {
+            assert.isNull(func(""));
+        });
+
+        it("Returns null on one character url", function() {
+            assert.isNull(func("x"));
+        });
+
+        it("Returns null on simple http url", function() {
+            var i = "http://forum-beta.sakh.com/123/456/#reply-789";
+            assert.isNull(func(i));
+        });
+
+        it("Returns new url on correct old url", function() {
+            var i = "https://forum-beta.sakh.com/123/456/#reply-789";
+            var o = "https://forum.sakh.com/?sub=123&post=456#789";
+            assert.equal(func(i), o);
+        });
+
+    });
+
 });
