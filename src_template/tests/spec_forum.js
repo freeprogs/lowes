@@ -88,3 +88,74 @@ describe("UrlConverter methods", function() {
     });
 
 });
+
+describe("UrlEscaper methods", function() {
+
+    describe("Method escapeCharsInPath()", function() {
+
+        var func = (new UrlEscaper()).escapeCharsInPath;
+
+        it("Returns null on undefined url", function() {
+            assert.isNull(func(undefined, [":"]));
+        });
+
+        it("Returns null on undefined characters list", function() {
+            var i1 = "https://www.domain.com:12345/abc;def:ghi";
+            assert.isNull(func(i1, undefined));
+        });
+
+        it("Returns null on empty url", function() {
+            assert.isNull(func("", [":"]));
+        });
+
+        it("Returns null on one character url", function() {
+            assert.isNull(func("x", [":"]));
+        });
+
+        it("Returns unchanged url on empty characters list", function() {
+            var i1 = "https://www.domain.com:12345/abc;def:ghi";
+            var i2 = [];
+            var o = i1;
+            assert.equal(func(i1, i2), o);
+        });
+
+        it("Returns escaped url on url without port", function() {
+            var i1 = "https://www.domain.com/abc;def:ghi";
+            var i2 = [":", ";"];
+            var o = "https://www.domain.com/abc%3Bdef%3Aghi";
+            assert.equal(func(i1, i2), o);
+        });
+
+        it("Returns escaped url on url with port", function() {
+            var i1 = "https://www.domain.com:12345/abc;def:ghi";
+            var i2 = [":", ";"];
+            var o = "https://www.domain.com:12345/abc%3Bdef%3Aghi";
+            assert.equal(func(i1, i2), o);
+        });
+
+        it("Can escape several repetitions of a character in url", function() {
+            var i1 = "https://www.domain.com:12345/a;b:c;d:e";
+            var i2 = [":", ";"];
+            var o = "https://www.domain.com:12345/a%3Bb%3Ac%3Bd%3Ae";
+            assert.equal(func(i1, i2), o);
+        });
+
+        it("Replaces only charachers in character list", function() {
+            var i1;
+            var i2;
+            var o;
+
+            i1 = "https://www.domain.com:12345/abc;def:ghi";
+            i2 = [":", ";"];
+            o = "https://www.domain.com:12345/abc%3Bdef%3Aghi";
+            assert.equal(func(i1, i2), o);
+
+            i1 = "https://www.domain.com:12345/abc;def:ghi";
+            i2 = [":"];
+            o = "https://www.domain.com:12345/abc;def%3Aghi";
+            assert.equal(func(i1, i2), o);
+        });
+
+    });
+
+});
