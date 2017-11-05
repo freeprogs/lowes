@@ -75,6 +75,23 @@
 
     <div class="vertical-pad">&nbsp;</div>
 
+    <form action="javascript:void(forum.transMsgPostUrlToLikesUrl());">
+      Translate message post url to message post likes url
+      <div id="forum-msgpostlikes-in" class="in-layout">
+        <input type="text" class="text-field-layout" />
+      </div>
+      Result
+      <div id="forum-msgpostlikes-out" class="out-layout">
+        <input type="text" class="text-field-layout" />
+      </div>
+      <input type="submit" value="ok"/>
+      <input type="reset" value="clear"/>
+    </form>
+    Status
+    <div id="forum-msgpostlikes-log" class="log-layout"><span></span></div>
+
+    <div class="vertical-pad">&nbsp;</div>
+
     <form action="javascript:void(forum.escapeUrlForMessage());">
       Escape url for message
       <div id="forum-escapeurl-in" class="in-layout">

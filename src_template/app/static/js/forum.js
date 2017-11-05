@@ -33,11 +33,14 @@ var forum = {
         var topicLogger = new LabelLogger(topicLog);
         var msgPostLog = searcher.searchById("forum-msgpost-log");
         var msgPostLogger = new LabelLogger(msgPostLog);
+        var msgPostLikesLog = searcher.searchById("forum-msgpostlikes-log");
+        var msgPostLikesLogger = new LabelLogger(msgPostLikesLog);
         var escapeUrlLog = searcher.searchById("forum-escapeurl-log");
         var escapeUrlLogger = new LabelLogger(escapeUrlLog);
 
         topicLogger.write("ready");
         msgPostLogger.write("ready");
+        msgPostLikesLogger.write("ready");
         escapeUrlLogger.write("ready");
         return true;
     },
@@ -86,6 +89,33 @@ var forum = {
         }
 
         var oldUrl = converter.msgPostNewToOld(input.value);
+        if (oldUrl) {
+            output.value = oldUrl;
+            logger.write("ok");
+        }
+        else {
+            logger.write("error");
+        }
+        return true;
+    },
+
+    transMsgPostUrlToLikesUrl: function() {
+        var searcher = new NodeSearcher();
+
+        var input = searcher.searchById("forum-msgpostlikes-in");
+        var output = searcher.searchById("forum-msgpostlikes-out");
+        var log = searcher.searchById("forum-msgpostlikes-log");
+
+        var converter = new UrlConverter();
+        var logger = new LabelLogger(log);
+
+        if (!input.value) {
+            input.value = "https://forum.sakh.com/?sub=t?&post=p?#p?"
+            logger.write("ready");
+            return false;
+        }
+
+        var oldUrl = converter.msgPostOldToLikes(input.value);
         if (oldUrl) {
             output.value = oldUrl;
             logger.write("ok");
@@ -193,6 +223,32 @@ UrlConverter.prototype.msgPostNewToOld = function(url) {
     }
     var out = parts[1] + parts[2] + "?sub=" + parts[3]
         + "&post=" + parts[4] + "#" + parts[5];
+    return out;
+}
+
+UrlConverter.prototype.msgPostOldToLikes = function(url) {
+    /**
+     * Convert forum msgpost url from old syntax to the likes page.
+     *
+     * @param {string} url The msgpost url in old format.
+     * @return {string} The likes url.
+     *
+     * Example:
+     * In:
+     * https://forum.sakh.com/?sub=123&post=456#456
+     * Out:
+     * https://forum-beta.sakh.com/likes/reply/456/
+     */
+    if (!url) {
+        return null;
+    }
+    var pat =
+        /^(https:\/\/forum)(\.sakh\.com\/)\?sub=\d+&post=\d+#(\d+)$/
+    var parts = url.match(pat);
+    if (!parts) {
+        return null;
+    }
+    var out = parts[1] + "-beta" + parts[2] + "likes/reply/" + parts[3] + "/";
     return out;
 }
 
