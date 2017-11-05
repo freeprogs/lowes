@@ -87,6 +87,35 @@ describe("UrlConverter methods", function() {
 
     });
 
+    describe("Method msgPostOldToLikes()", function() {
+
+        var func = (new UrlConverter()).msgPostOldToLikes;
+
+        it("Returns null on undefined url", function() {
+            assert.isNull(func());
+        });
+
+        it("Returns null on empty url", function() {
+            assert.isNull(func(""));
+        });
+
+        it("Returns null on one character url", function() {
+            assert.isNull(func("x"));
+        });
+
+        it("Returns null on simple http url", function() {
+            var i = "http://forum.sakh.com/?sub=123&post=456#789"
+            assert.isNull(func(i));
+        });
+
+        it("Returns likes url on correct old url", function() {
+            var i = "https://forum.sakh.com/?sub=123&post=456#789";
+            var o = "https://forum-beta.sakh.com/likes/reply/789/";
+            assert.equal(func(i), o);
+        });
+
+    });
+
 });
 
 describe("UrlEscaper methods", function() {
