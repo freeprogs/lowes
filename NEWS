@@ -12,6 +12,16 @@ Changed
 
 Fixed
 
+[0.4.0] - 2017-11-05
+
+Added
+- The old post message url to new likes url translator form and
+  javascript to the forum page.
+
+Changed
+
+Fixed
+
 [0.3.1] - 2017-10-23
 
 Added
