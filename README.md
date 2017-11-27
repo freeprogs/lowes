@@ -25,6 +25,21 @@ $ ./configure
 $ make
 ```
 
+### Testing
+
+After building has done go to _build/tests_ and open page test_all.html in the browser.
+
+If tests don't work, install testing components:
+
+| name                         | description                                    |
+|:-----------------------------|:-----------------------------------------------|
+| [mocha](http://mochajs.org/) | functions describe(), it() and so on for TDD   |
+| [chai](http://chaijs.com/)   | different assert functions for tests           |
+| [sinon](http://sinonjs.org/) | mocks and stubs for tests                      |
+
+You can load three js-files and connect document paths to them. Everything should work.
+
+
 ### Installation
 
 To install run:
