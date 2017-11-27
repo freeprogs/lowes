@@ -12,6 +12,16 @@ Changed
 
 Fixed
 
+[0.4.1] - 2017-11-27
+
+Added
+
+Changed
+- Padding block preventing quick change of the forum page layout
+  replaced by div blocks with CSS-styles for them.
+
+Fixed
+
 [0.4.0] - 2017-11-05
 
 Added
