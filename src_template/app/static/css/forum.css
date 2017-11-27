@@ -19,7 +19,7 @@
 
 /* Layout for forum fields */
 
-.log-layout { width: 10%; border: solid; border-width: 1px; }
+.log-layout { width: 10%; border: 1px solid #000000; }
 .in-layout { width: 50%; }
 .out-layout { width: 50%; }
 .text-field-layout { width: 100%; }
