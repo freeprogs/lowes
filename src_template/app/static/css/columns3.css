@@ -20,6 +20,12 @@
 /* Layout for header, three columns and footer */
 
 .header, .footer { background: #eeeeee; }
+
+.header {
+    height: 20px;
+    border-bottom: 1px solid #000000;
+}
+
 .layout { overflow: hidden; }
 .col1 { width: 25%; float: left; }
 .col2 { width: 70%; float: right; }
