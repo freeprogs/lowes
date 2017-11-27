@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* Layout for three columns */
+/* Layout for header, three columns and footer */
 
 .header, .footer { background: #eeeeee; }
 .layout { overflow: hidden; }
