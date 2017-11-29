@@ -17,6 +17,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+/* Layout for forum forms menu */
+
+.forms-list-container {
+    padding: 20px 0px;
+}
+
+.forms-list-button, .forms-list-button-pushed {
+    margin: 3px 0px;
+    padding: 3px 3px;
+    width: 150px;
+    height: 30px;
+    border: 2px solid #000000;
+}
+
+.forms-list-button {
+    background: #11aa11;
+}
+
+.forms-list-button-pushed {
+    background: #ffff00;
+}
+
+
 /* Layout for forum forms */
 
 .forms-container {
