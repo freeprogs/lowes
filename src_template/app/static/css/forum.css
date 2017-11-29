@@ -44,7 +44,8 @@
 /* Layout for forum forms */
 
 .forms-container {
-    padding: 20px 0px;
+    padding: 20px 0px 20px 120px;
+    min-height: 200px;
 }
 
 .form1-container, .form2-container, .form3-container {
