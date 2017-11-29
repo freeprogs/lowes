@@ -328,4 +328,82 @@ LabelLogger.prototype.write = function(text) {
 
 function forum_main() {
     forum_object.init();
+    forum_connectButtons();
+}
+
+function forum_connectButtons() {
+
+    function Button(node, cssNotPushed, cssPushed) {
+        this.node = node;
+        this._cssNotPushed = cssNotPushed;
+        this._cssPushed = cssPushed;
+        this.isPushed = undefined;
+    }
+    Button.prototype.push = function() {
+        this.isPushed = true;
+        this.node.className = this._cssPushed;
+    }
+    Button.prototype.release = function() {
+        this.isPushed = false;
+        this.node.className = this._cssNotPushed;
+    }
+    Button.prototype.toggle = function() {
+        if (this.isPushed) {
+            this.release();
+        }
+        else {
+            this.push();
+        }
+    }
+
+    function Form(node) {
+        this.node = node;
+        this.isHidden = undefined;
+    }
+    Form.prototype.hide = function() {
+        this.isHidden = true;
+        this.node.style.display = "none";
+    }
+    Form.prototype.show = function() {
+        this.isHidden = false;
+        this.node.style.display = "block";
+    }
+    Form.prototype.toggle = function() {
+        if (this.isHidden) {
+            this.show();
+        }
+        else {
+            this.hide();
+        }
+    }
+
+    var buttons = Array.prototype.slice.call(
+        document.querySelectorAll(".forms-list-button"), 0).map(function(e) {
+        return new Button(e, "forms-list-button", "forms-list-button-pushed");
+    });
+    var forms = [document.querySelector(".form1-container"),
+                 document.querySelector(".form2-container"),
+                 document.querySelector(".form3-container"),
+                 document.querySelector(".form4-container")].map(function(e) {
+        return new Form(e);
+    });
+    var info = document.querySelector(".forms-help-info");
+    var buttonFormPairs;
+
+    buttons.forEach(function(e) { e.release(); });
+    forms.forEach(function(e) { e.hide(); });
+
+    buttonFormPairs = buttons.map(function(e, i) { return [e, forms[i]]; });
+    buttonFormPairs.map(function([button, form]) {
+        button.node.addEventListener("click", function(event) {
+            button.toggle();
+            form.toggle();
+        });
+        button.node.addEventListener("mouseover", function(event) {
+            info.innerHTML = button.node.getAttribute("data-info");
+        });
+        button.node.addEventListener("mouseout", function(event) {
+            info.innerHTML = "";
+        });
+    });
 }
