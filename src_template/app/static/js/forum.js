@@ -26,7 +26,7 @@
  *
  */
 
-var forum = {
+var forum_object = {
     init: function() {
         var searcher = new NodeSearcher();
         var topicLog = searcher.searchById("forum-topic-log");
@@ -326,6 +326,6 @@ LabelLogger.prototype.write = function(text) {
 }
 
 
-function main() {
-    forum.init();
+function forum_main() {
+    forum_object.init();
 }

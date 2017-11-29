@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="static/css/forum.css"/>
   <script type="text/javascript" src="static/js/forum.js"></script>
 </head>
-<body onload="main();">
+<body onload="forum_main();">
 
 <div class="header">
   <a href="https://forum.sakh.com">inet</a>
@@ -40,7 +40,7 @@
 
     <div class="forms-container">
       <div class="form1-container">
-        <form action="javascript:void(forum.transTopicUrl());">
+        <form action="javascript:void(forum_object.transTopicUrl());">
           Translate topic url
           <div id="forum-topic-in" class="in-layout">
             <input type="text" class="text-field-layout" />
@@ -59,7 +59,7 @@
       </div>
 
       <div class="form2-container">
-        <form action="javascript:void(forum.transMsgPostUrl());">
+        <form action="javascript:void(forum_object.transMsgPostUrl());">
           Translate message post url
           <div id="forum-msgpost-in" class="in-layout">
             <input type="text" class="text-field-layout" />
@@ -78,7 +78,7 @@
       </div>
 
       <div class="form3-container">
-        <form action="javascript:void(forum.transMsgPostUrlToLikesUrl());">
+        <form action="javascript:void(forum_object.transMsgPostUrlToLikesUrl());">
           Translate message post url to message post likes url
           <div id="forum-msgpostlikes-in" class="in-layout">
             <input type="text" class="text-field-layout" />
@@ -97,7 +97,7 @@
       </div>
 
       <div class="form4-container">
-        <form action="javascript:void(forum.escapeUrlForMessage());">
+        <form action="javascript:void(forum_object.escapeUrlForMessage());">
           Escape url for message
           <div id="forum-escapeurl-in" class="in-layout">
             <input type="text" class="text-field-layout" />
