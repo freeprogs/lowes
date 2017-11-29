@@ -47,6 +47,10 @@
 
 /* Layout for forum forms */
 
+.forms-header {
+    font-size: large;
+}
+
 .forms-container {
     padding: 20px 0px 20px 120px;
     min-height: 200px;
