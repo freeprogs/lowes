@@ -27,6 +27,6 @@
 }
 
 .layout { overflow: hidden; }
-.col1 { width: 25%; float: left; }
-.col2 { width: 70%; float: right; }
-.col3 { width: 5%; float: right; }
+.col1 { width: 19%; float: left; }
+.col2 { width: 50%; float: right; }
+.col3 { width: 30%; float: right; }
