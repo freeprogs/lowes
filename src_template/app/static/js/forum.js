@@ -22,6 +22,7 @@
  *
  * - Topic url from new form to old form
  * - Post message url from new form to old form
+ * - Post message url from old syntax to the likes page
  * - An escaper for special characters in a url
  *
  */
