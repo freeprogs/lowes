@@ -20,6 +20,10 @@
 
 /* Layout for forum forms menu */
 
+.forms-list-header {
+    font-size: large;
+}
+
 .forms-list-container {
     padding: 20px 0px;
 }
