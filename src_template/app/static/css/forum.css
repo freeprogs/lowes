@@ -30,6 +30,6 @@
 /* Layout for forum fields */
 
 .log-layout { width: 10%; border: 1px solid #000000; }
-.in-layout { width: 50%; }
-.out-layout { width: 50%; }
+.in-layout { width: 80%; }
+.out-layout { width: 80%; }
 .text-field-layout { width: 100%; }
