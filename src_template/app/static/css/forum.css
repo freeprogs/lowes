@@ -51,6 +51,14 @@
     padding: 0px 0px 20px;
 }
 
+
+/* Layout for forum forms help */
+
+.forms-help-container {
+    padding: 20px 0px;
+}
+
+
 /* Layout for forum fields */
 
 .log-layout { width: 10%; border: 1px solid #000000; }
