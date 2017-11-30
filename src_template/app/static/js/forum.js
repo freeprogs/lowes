@@ -408,3 +408,10 @@ function forum_connectButtons() {
         });
     });
 }
+
+
+(function() {
+    window.addEventListener("load", function(event) {
+        forum_main();
+    });
+}())
