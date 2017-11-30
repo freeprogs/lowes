@@ -293,7 +293,7 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
 
     function escape(s, chars) {
         var out = s;
-        var charCode;
+        var charHexCode;
         for (var i = 0; i < chars.length; i++) {
             charHexCode = chars[i].charCodeAt(0).toString(16).toUpperCase();
             out = out.replace(new RegExp(chars[i], "g"), "%" + charHexCode);
