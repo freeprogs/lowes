@@ -12,6 +12,21 @@ Changed
 
 Fixed
 
+[0.5.1] - 2017-12-01
+
+Added
+
+Changed
+- Moved forum HTML body event to the JavaScript script.
+- Moved forum forms action handlers to the JavaScript script.
+
+Fixed
+- Forum comment, describing implemented features in the JavaScript
+  script.
+- Incorrect variable name in the forum escaping url function.
+- Forum forms block minimal height was too small, so the footer
+  shifted for one appeared form.
+
 [0.5.0] - 2017-11-30
 
 Added
