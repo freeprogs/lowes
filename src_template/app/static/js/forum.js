@@ -330,6 +330,7 @@ LabelLogger.prototype.write = function(text) {
 function forum_main() {
     forum_object.init();
     forum_connectButtons();
+    forum_connectForms();
 }
 
 function forum_connectButtons() {
@@ -406,6 +407,27 @@ function forum_connectButtons() {
         button.node.addEventListener("mouseout", function(event) {
             info.innerHTML = "";
         });
+    });
+}
+
+function forum_connectForms() {
+    var forms = document.forms;
+
+    forms[0].addEventListener("submit", function(event) {
+        forum_object.transTopicUrl();
+        event.preventDefault();
+    });
+    forms[1].addEventListener("submit", function(event) {
+        forum_object.transMsgPostUrl();
+        event.preventDefault();
+    });
+    forms[2].addEventListener("submit", function(event) {
+        forum_object.transMsgPostUrlToLikesUrl();
+        event.preventDefault();
+    });
+    forms[3].addEventListener("submit", function(event) {
+        forum_object.escapeUrlForMessage();
+        event.preventDefault();
     });
 }
 
