@@ -411,7 +411,10 @@ function forum_connectButtons() {
 }
 
 function forum_connectForms() {
-    var forms = document.forms;
+    var forms = [document.querySelector(".form1-container > form"),
+                 document.querySelector(".form2-container > form"),
+                 document.querySelector(".form3-container > form"),
+                 document.querySelector(".form4-container > form")]
 
     forms[0].addEventListener("submit", function(event) {
         forum_object.transTopicUrl();
