@@ -138,7 +138,7 @@ var forum_object = {
         var logger = new LabelLogger(log);
 
         if (!input.value) {
-            input.value = "https://?"
+            input.value = "https://?/?"
             logger.write("ready");
             return false;
         }
