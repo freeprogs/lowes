@@ -2,6 +2,7 @@ m4_changecom()m4_dnl
 m4_define(__PROGRAM_NAME__, lowes)m4_dnl
 m4_define(__PROGRAM_AUTHOR__, Slava)m4_dnl
 m4_define(__PROGRAM_AUTHOR_EMAIL__, <freeprogs.feedback@yandex.ru>)m4_dnl
+m4_define(__PROGRAM_AUTHOR_EMAIL_RAW__, freeprogs.feedback@yandex.ru)m4_dnl
 m4_define(__PROGRAM_DAY__, 23)m4_dnl
 m4_define(__PROGRAM_MONTH__, Oct)m4_dnl
 m4_define(__PROGRAM_YEAR__, 2017)m4_dnl
