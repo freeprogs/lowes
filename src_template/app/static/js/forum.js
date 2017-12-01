@@ -327,7 +327,7 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     if (!escapeChars) {
         return null;
     }
-    if (!/^https?:\/\//.test(url)) {
+    if (!/^https?:\/\/.+\//.test(url)) {
         return null;
     }
     if (escapeChars.length == 0) {

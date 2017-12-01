@@ -141,6 +141,10 @@ describe("UrlEscaper methods", function() {
             assert.isNull(func("x", [":"]));
         });
 
+        it("Returns null on url without root path", function() {
+            assert.isNull(func("https://abc", [":"]));
+        });
+
         it("Returns unchanged url on empty characters list", function() {
             var i1 = "https://www.domain.com:12345/abc;def:ghi";
             var i2 = [];
