@@ -148,6 +148,13 @@ describe("UrlEscaper methods", function() {
             assert.equal(func(i1, i2), o);
         });
 
+        it("Returns escaped url on HTTP-url without S", function() {
+            var i1 = "http://www.domain.com/abc;def:ghi";
+            var i2 = [":", ";"];
+            var o = "http://www.domain.com/abc%3Bdef%3Aghi";
+            assert.equal(func(i1, i2), o);
+        });
+
         it("Returns escaped url on url without port", function() {
             var i1 = "https://www.domain.com/abc;def:ghi";
             var i2 = [":", ";"];
