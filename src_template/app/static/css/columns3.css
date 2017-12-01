@@ -19,10 +19,12 @@
 
 /* Layout for header, three columns and footer */
 
-.header, .footer { background: #eeeeee; }
+.header, .footer {
+    height: 40px;
+    background: #eeeeee;
+}
 
 .header {
-    height: 20px;
     border-bottom: 1px solid #000000;
 }
 
