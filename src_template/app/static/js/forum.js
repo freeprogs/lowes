@@ -383,6 +383,7 @@ function forum_main() {
     forum_object.init();
     forum_connectButtons();
     forum_connectForms();
+    forum_connectAbout();
 }
 
 function forum_connectButtons() {
@@ -497,6 +498,25 @@ function forum_connectForms() {
     forms[3].addEventListener("submit", function(event) {
         forum_object.escapeUrlForMessage();
         event.preventDefault();
+    });
+}
+
+function forum_connectAbout() {
+    /**
+     * Connect about info to hidden data.
+     */
+
+    var aboutLink = document.querySelector(".about > .about-link");
+    var aboutLinkA = aboutLink.querySelector("a");
+    var aboutVersion = document.querySelector(".about > .about-version");
+
+    aboutLinkA.addEventListener("mousedown", function(event) {
+        aboutLink.style.display = "none";
+        aboutVersion.style.display = "block";
+    });
+    aboutVersion.addEventListener("click", function(event) {
+        aboutLink.style.display = "block";
+        aboutVersion.style.display = "none";
     });
 }
 
