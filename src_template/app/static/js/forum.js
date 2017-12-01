@@ -29,6 +29,12 @@
 
 var forum_object = {
     init: function() {
+        /**
+         * Initialize the forum object.
+         *
+         * Find all forms and set each of them to the ready state.
+         * @return {bool} True if no errors.
+         */
         var searcher = new NodeSearcher();
         var topicLog = searcher.searchById("forum-topic-log");
         var topicLogger = new LabelLogger(topicLog);
@@ -47,6 +53,16 @@ var forum_object = {
     },
 
     transTopicUrl: function() {
+        /**
+         * Translate in the form topic url from new syntax to old syntax.
+         *
+         * Take the url from the input text field, take the topic
+         * number from the url, insert the topic number to the
+         * reorganized url and print the new url to the output text
+         * field.
+         * @return {bool} True if no errors and false if any error.
+         */
+
         var searcher = new NodeSearcher();
 
         var input = searcher.searchById("forum-topic-in");
@@ -74,6 +90,17 @@ var forum_object = {
     },
 
     transMsgPostUrl: function() {
+        /**
+         * Translate in the form message post url from new syntax to
+         * old syntax.
+         *
+         * Take the url from the input text field, take the topic and
+         * post numbers from the url, insert the topic and post
+         * numbers to the reorganized url and print new url to the
+         * output text field.
+         * @return {bool} True if no errors and false if any error.
+         */
+
         var searcher = new NodeSearcher();
 
         var input = searcher.searchById("forum-msgpost-in");
@@ -101,6 +128,17 @@ var forum_object = {
     },
 
     transMsgPostUrlToLikesUrl: function() {
+        /**
+         * Translate in the form message post url from old syntax to
+         * the likes url in new syntax.
+         *
+         * Take the url from the input text field, take the topic and
+         * post numbers from the url, insert the topic and post
+         * numbers to the reorganized url and print new url to the
+         * output text field.
+         * @return {bool} True if no errors and false if any error.
+         */
+
         var searcher = new NodeSearcher();
 
         var input = searcher.searchById("forum-msgpostlikes-in");
@@ -128,6 +166,17 @@ var forum_object = {
     },
 
     escapeUrlForMessage: function() {
+        /**
+         * Translate in the form any HTTP(S)-url to the url with
+         * escaped special characters from the list [":", ";"].
+         *
+         * Take the url from the input text field, translate special
+         * characters in the url, excluding initial Internet protocol
+         * and domain name, to hexadecimal codes with the percent
+         * character and print the new url to the output text field.
+         * @return {bool} True if no errors and false if any error.
+         */
+
         var searcher = new NodeSearcher();
 
         var input = searcher.searchById("forum-escapeurl-in");
@@ -328,12 +377,22 @@ LabelLogger.prototype.write = function(text) {
 
 
 function forum_main() {
+    /**
+     * Run main function of the forum page.
+     */
     forum_object.init();
     forum_connectButtons();
     forum_connectForms();
 }
 
 function forum_connectButtons() {
+    /**
+     * Connect buttons by events to forms and help area.
+     *
+     * A button can show and hide connected form by click. When mouse
+     * is over the button the help message about button action is
+     * printed in the help area.
+     */
 
     function Button(node, cssNotPushed, cssPushed) {
         this.node = node;
@@ -411,6 +470,13 @@ function forum_connectButtons() {
 }
 
 function forum_connectForms() {
+    /**
+     * Connect forms' actions to js-functions.
+     *
+     * Every form is connected to its js-function. On submit the form
+     * is running the function which does all work.
+     */
+
     var forms = [document.querySelector(".form1-container > form"),
                  document.querySelector(".form2-container > form"),
                  document.querySelector(".form3-container > form"),
@@ -436,6 +502,9 @@ function forum_connectForms() {
 
 
 (function() {
+    /**
+     * Connect loaded window to the main js-function.
+     */
     window.addEventListener("load", function(event) {
         forum_main();
     });
