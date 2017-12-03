@@ -196,6 +196,13 @@ describe("UrlEscaper methods", function() {
             assert.equal(func(i1, i2), o);
         });
 
+        it("Can replace a regexp meta-character from the character list", function() {
+            var i1 = "https://www.domain.com/a.b+c*d^e$f";
+            var i2 = [".", "+", "*", "^", "$"];
+            var o = "https://www.domain.com/a%2Eb%2Bc%2Ad%5Ee%24f";
+            assert.equal(func(i1, i2), o);
+        });
+
     });
 
 });
