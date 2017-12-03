@@ -340,12 +340,17 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     var part2 = match[2];
     var part2escaped;
 
+    function escapeRegExp(str) {
+        return str.replace(/[.*+?^$|{}()\[\]\\]/g, "\\$&");
+    }
+
     function escape(s, chars) {
         var out = s;
         var charHexCode;
         for (var i = 0; i < chars.length; i++) {
             charHexCode = chars[i].charCodeAt(0).toString(16).toUpperCase();
-            out = out.replace(new RegExp(chars[i], "g"), "%" + charHexCode);
+            out = out.replace(new RegExp(escapeRegExp(chars[i]), "g"),
+                              "%" + charHexCode);
         }
         return out;
     }
