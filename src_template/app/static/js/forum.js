@@ -168,31 +168,37 @@ var forum_object = {
     escapeUrlForMessage: function() {
         /**
          * Translate in the form any HTTP(S)-url to the url with
-         * escaped special characters from the list [":", ";"].
+         * escaped special characters from the list.
          *
          * Take the url from the input text field, translate special
          * characters in the url, excluding initial Internet protocol
          * and domain name, to hexadecimal codes with the percent
          * character and print the new url to the output text field.
+         * The default special characters list is [":", ";"].
          * @return {bool} True if no errors and false if any error.
          */
 
         var searcher = new NodeSearcher();
 
-        var input = searcher.searchById("forum-escapeurl-in");
+        var inputUrl = searcher.searchById("forum-escapeurl-in-url");
+        var inputChars = searcher.searchById("forum-escapeurl-in-chars");
         var output = searcher.searchById("forum-escapeurl-out");
         var log = searcher.searchById("forum-escapeurl-log");
 
         var escaper = new UrlEscaper();
         var logger = new LabelLogger(log);
 
-        if (!input.value) {
-            input.value = "https://?/?"
+        var DEFAULT_CHARS = ":;";
+
+        if (!inputUrl.value || !inputChars.value) {
+            inputUrl.value = "https://?/?"
+            inputChars.value = DEFAULT_CHARS;
             logger.write("ready");
             return false;
         }
 
-        var escapedUrl = escaper.escapeCharsInPath(input.value, [":", ";"]);
+        var escapedUrl = escaper.escapeCharsInPath(
+            inputUrl.value, inputChars.value.split(""));
         if (escapedUrl) {
             output.value = escapedUrl;
             logger.write("ok");
