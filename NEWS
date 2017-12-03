@@ -12,6 +12,23 @@ Changed
 
 Fixed
 
+[0.6.0] - 2017-12-03
+
+Added
+- The poped-up about button with program name, version, author,
+  copyright and update date on the forum page.
+- The obvious characters list for escaping in the escape form on the
+  forum page.
+
+Changed
+- Make cursor as a hand without selection on forum buttons.
+
+Fixed
+- Regexp meta-characters bug in the escape characters list on the
+  forum page.
+- The program update date for every program version wasn't written
+  correctly to sources.
+
 [0.5.1] - 2017-12-01
 
 Added
