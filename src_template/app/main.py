@@ -23,7 +23,7 @@ Local web site with different features controlled through a browser.
 """
 
 __version__ = '__PROGRAM_VERSION_NO_V__'
-__date__ = '__PROGRAM_DATE__'
+__date__ = '__PROGRAM_UPDATE_DATE__'
 __author__ = '__PROGRAM_AUTHOR__ __PROGRAM_AUTHOR_EMAIL__'
 __license__ = 'GNU GPLv3'
 
