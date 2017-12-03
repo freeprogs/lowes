@@ -78,6 +78,10 @@
 
 /* Layout for forum fields */
 
+.in-layout, .out-layout, .in-layout-small {
+    padding: 3px 0px 5px;
+}
+
 .in-layout { width: 80%; }
 .in-layout-small { width: 10%; }
 .out-layout { width: 80%; }
