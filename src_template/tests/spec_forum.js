@@ -180,7 +180,7 @@ describe("UrlEscaper methods", function() {
             assert.equal(func(i1, i2), o);
         });
 
-        it("Replaces only charachers in character list", function() {
+        it("Replaces only charachers from the character list", function() {
             var i1;
             var i2;
             var o;
