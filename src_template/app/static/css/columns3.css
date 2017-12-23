@@ -48,7 +48,29 @@
     z-index: 3;
 }
 
-.layout { margin-top: 40px; overflow: hidden; }
+.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 40px;
+    width: 100%;
+    z-index: 1;
+}
+
+.footer-panel {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+.footer-panel img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.layout { margin: 40px 0px 40px 0px; overflow: hidden; }
 .col1 { width: 19%; float: left; }
 .col2 { width: 50%; float: right; }
 .col3 { width: 30%; float: right; }
