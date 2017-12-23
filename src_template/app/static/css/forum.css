@@ -22,30 +22,19 @@
 
 .forms-list-header {
     font-size: large;
+    margin-bottom: 1em;
 }
 
 .forms-list-container {
     padding: 20px 0px;
 }
 
-.forms-list-button, .forms-list-button-pushed {
-    margin: 3px 0px;
-    padding: 3px 3px;
-    width: 150px;
-    height: 30px;
-    border: 2px solid #000000;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
 .forms-list-button {
-    background: #11aa11;
+    width: 150px;
 }
 
-.forms-list-button-pushed {
-    background: #ffff00;
+.forms-list-button img {
+    width: 100%;
 }
 
 

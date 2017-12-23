@@ -405,20 +405,21 @@ function forum_connectButtons() {
      * is over the button the help message about button action is
      * printed in the help area.
      */
-
-    function Button(node, cssNotPushed, cssPushed) {
+    function Button(node, nodeNotPushed, nodePushed) {
         this.node = node;
-        this._cssNotPushed = cssNotPushed;
-        this._cssPushed = cssPushed;
+        this._nodeNotPushed = nodeNotPushed;
+        this._nodePushed = nodePushed;
         this.isPushed = undefined;
     }
     Button.prototype.push = function() {
         this.isPushed = true;
-        this.node.className = this._cssPushed;
+        this._nodeNotPushed.style.display = "none";
+        this._nodePushed.style.display = "block";
     }
     Button.prototype.release = function() {
         this.isPushed = false;
-        this.node.className = this._cssNotPushed;
+        this._nodeNotPushed.style.display = "block";
+        this._nodePushed.style.display = "none";
     }
     Button.prototype.toggle = function() {
         if (this.isPushed) {
@@ -452,7 +453,10 @@ function forum_connectButtons() {
 
     var buttons = Array.prototype.slice.call(
         document.querySelectorAll(".forms-list-button"), 0).map(function(e) {
-        return new Button(e, "forms-list-button", "forms-list-button-pushed");
+            return new Button(
+                e,
+                e.querySelector(".button-off"),
+                e.querySelector(".button-on"));
     });
     var forms = [document.querySelector(".form1-container"),
                  document.querySelector(".form2-container"),
