@@ -6,7 +6,7 @@ m4_define(__PROGRAM_AUTHOR_EMAIL_RAW__, freeprogs.feedback@yandex.ru)m4_dnl
 m4_define(__PROGRAM_DAY__, 23)m4_dnl
 m4_define(__PROGRAM_MONTH__, Oct)m4_dnl
 m4_define(__PROGRAM_YEAR__, 2017)m4_dnl
-m4_define(__PROGRAM_UPDATE_DAY__, 3)m4_dnl
+m4_define(__PROGRAM_UPDATE_DAY__, 23)m4_dnl
 m4_define(__PROGRAM_UPDATE_MONTH__, Dec)m4_dnl
 m4_define(__PROGRAM_UPDATE_YEAR__, 2017)m4_dnl
 m4_define(__PROGRAM_COPYRIGHT__, `Copyright (C) __PROGRAM_YEAR__')m4_dnl
