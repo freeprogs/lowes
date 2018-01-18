@@ -405,21 +405,21 @@ function forum_connectButtons() {
      * is over the button the help message about button action is
      * printed in the help area.
      */
-    function Button(node, nodeNotPushed, nodePushed) {
+    function Button(node) {
         this.node = node;
-        this._nodeNotPushed = nodeNotPushed;
-        this._nodePushed = nodePushed;
+        this.img = node.querySelector("img");
         this.isPushed = undefined;
     }
     Button.prototype.push = function() {
         this.isPushed = true;
-        this._nodeNotPushed.style.display = "none";
-        this._nodePushed.style.display = "block";
+        this.img.src = this.img.getAttribute("data-state-on");
     }
     Button.prototype.release = function() {
         this.isPushed = false;
-        this._nodeNotPushed.style.display = "block";
-        this._nodePushed.style.display = "none";
+        this.img.src = this.img.getAttribute("data-state-off");
+    }
+    Button.prototype.getDescription = function() {
+        return this.node.getAttribute("data-info");
     }
     Button.prototype.toggle = function() {
         if (this.isPushed) {
@@ -453,10 +453,7 @@ function forum_connectButtons() {
 
     var buttons = Array.prototype.slice.call(
         document.querySelectorAll(".forms-list-button"), 0).map(function(e) {
-            return new Button(
-                e,
-                e.querySelector(".button-off"),
-                e.querySelector(".button-on"));
+            return new Button(e);
     });
     var forms = [document.querySelector(".form1-container"),
                  document.querySelector(".form2-container"),
@@ -477,7 +474,7 @@ function forum_connectButtons() {
             form.toggle();
         });
         button.node.addEventListener("mouseover", function(event) {
-            info.innerHTML = button.node.getAttribute("data-info");
+            info.innerHTML = button.getDescription();
         });
         button.node.addEventListener("mouseout", function(event) {
             info.innerHTML = "";
