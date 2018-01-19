@@ -21,5 +21,5 @@
 
 # Run local server localhost:5080
 
-export FLASK_APP=/usr/local/web/__PROGRAM_NAME__/main.py
+export FLASK_APP=/usr/local/web/__PROGRAM_NAME__/app.py
 flask-3 run --port=5080
