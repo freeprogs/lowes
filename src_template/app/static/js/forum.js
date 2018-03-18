@@ -191,9 +191,12 @@ var forum_object = {
         var DEFAULT_INPUT_URL = "https://?/?";
         var DEFAULT_INPUT_CHARS = ":;";
 
-        if (!inputUrl.value || !inputChars.value) {
+        if (!inputUrl.value) {
             inputUrl.value = DEFAULT_INPUT_URL;
-            inputChars.value = DEFAULT_INPUT_CHARS;
+            if (!inputChars.value) {
+                inputChars.value = DEFAULT_INPUT_CHARS;
+            }
+            output.value = "";
             logger.write("ready");
             return false;
         }
