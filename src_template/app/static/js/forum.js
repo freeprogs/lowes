@@ -189,7 +189,7 @@ var forum_object = {
         var logger = new LabelLogger(log);
 
         var DEFAULT_INPUT_URL = "https://?/?";
-        var DEFAULT_INPUT_CHARS = ":;";
+        var DEFAULT_INPUT_CHARS = ":;()";
 
         if (!inputUrl.value) {
             inputUrl.value = DEFAULT_INPUT_URL;
