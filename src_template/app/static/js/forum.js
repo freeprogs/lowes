@@ -188,11 +188,12 @@ var forum_object = {
         var escaper = new UrlEscaper();
         var logger = new LabelLogger(log);
 
-        var DEFAULT_CHARS = ":;";
+        var DEFAULT_INPUT_URL = "https://?/?";
+        var DEFAULT_INPUT_CHARS = ":;";
 
         if (!inputUrl.value || !inputChars.value) {
-            inputUrl.value = "https://?/?"
-            inputChars.value = DEFAULT_CHARS;
+            inputUrl.value = DEFAULT_INPUT_URL;
+            inputChars.value = DEFAULT_INPUT_CHARS;
             logger.write("ready");
             return false;
         }
