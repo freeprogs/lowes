@@ -12,6 +12,17 @@ Changed
 
 Fixed
 
+[0.6.2] - 2018-03-20
+
+Added
+
+Changed
+- Forum buttons made more nice.
+- Parentheses added to the default values of the forum url escaper.
+
+Fixed
+- Default values for the forum url escaper erased user's url.
+
 [0.6.1] - 2017-12-23
 
 Added
