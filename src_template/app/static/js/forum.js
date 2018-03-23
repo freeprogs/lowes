@@ -174,7 +174,7 @@ var forum_object = {
          * characters in the url, excluding initial Internet protocol
          * and domain name, to hexadecimal codes with the percent
          * character and print the new url to the output text field.
-         * The default special characters list is [":", ";"].
+         * The default special characters list is [":", ";", "(", ")"].
          * @return {bool} True if no errors and false if any error.
          */
 
