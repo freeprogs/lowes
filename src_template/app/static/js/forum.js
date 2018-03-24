@@ -44,11 +44,14 @@ var forum_object = {
         var msgPostLikesLogger = new LabelLogger(msgPostLikesLog);
         var escapeUrlLog = searcher.searchById("forum-escapeurl-log");
         var escapeUrlLogger = new LabelLogger(escapeUrlLog);
+        var escapeRepeatsLog = searcher.searchById("forum-escaperepeats-log");
+        var escapeRepeatsLogger = new LabelLogger(escapeRepeatsLog);
 
         topicLogger.write("ready");
         msgPostLogger.write("ready");
         msgPostLikesLogger.write("ready");
         escapeUrlLogger.write("ready");
+        escapeRepeatsLogger.write("ready");
         return true;
     },
 
@@ -210,6 +213,9 @@ var forum_object = {
         else {
             logger.write("error");
         }
+        return true;
+    },
+    escapeRepeatsInTextForMessage: function() {
         return true;
     },
 }
@@ -462,7 +468,8 @@ function forum_connectButtons() {
     var forms = [document.querySelector(".form1-container"),
                  document.querySelector(".form2-container"),
                  document.querySelector(".form3-container"),
-                 document.querySelector(".form4-container")].map(function(e) {
+                 document.querySelector(".form4-container"),
+                 document.querySelector(".form5-container")].map(function(e) {
         return new Form(e);
     });
     var info = document.querySelector(".forms-help-info");
@@ -497,7 +504,8 @@ function forum_connectForms() {
     var forms = [document.querySelector(".form1-container > form"),
                  document.querySelector(".form2-container > form"),
                  document.querySelector(".form3-container > form"),
-                 document.querySelector(".form4-container > form")]
+                 document.querySelector(".form4-container > form"),
+                 document.querySelector(".form5-container > form")]
 
     forms[0].addEventListener("submit", function(event) {
         forum_object.transTopicUrl();
@@ -513,6 +521,10 @@ function forum_connectForms() {
     });
     forms[3].addEventListener("submit", function(event) {
         forum_object.escapeUrlForMessage();
+        event.preventDefault();
+    });
+    forms[4].addEventListener("submit", function(event) {
+        forum_object.escapeRepeatsInTextForMessage();
         event.preventDefault();
     });
 }
