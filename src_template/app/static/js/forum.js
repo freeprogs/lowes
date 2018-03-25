@@ -24,6 +24,7 @@
  * - Post message url from new form to old form
  * - Post message url from old syntax to the likes page
  * - An escaper for special characters in a url
+ * - An escaper for characters repeats in a message text
  *
  */
 
@@ -215,7 +216,44 @@ var forum_object = {
         }
         return true;
     },
+
     escapeRepeatsInTextForMessage: function() {
+        /**
+         * Translate in the form a message text to the text with
+         * repeats escaped by special tags.
+         *
+         * The text is scanned for characters repeats and every
+         * repeating character sequence escaped by tags like [u][/u].
+         * For example:
+         *   abcaaaaaadef -> abcaaa[u][/u]aa[u][/u]adef
+         * @return {bool} True if no errors and false if any error.
+         */
+        var searcher = new NodeSearcher();
+
+        var input = searcher.searchById("forum-escaperepeats-in");
+        var output = searcher.searchById("forum-escaperepeats-out");
+        var log = searcher.searchById("forum-escaperepeats-log");
+
+        var converter = new TextConverter();
+        var logger = new LabelLogger(log);
+
+        var DEFAULT_ESCAPE_DELIMITERS = ["[u][/u]", "[i][/i]", "[s][/s]"];
+
+        if (!input.value) {
+            input.value = "Teeeeeext"
+            logger.write("ready");
+            return false;
+        }
+
+        var escapedText = converter.escapeCharRepeatsByDelimeters(
+            input.value, DEFAULT_ESCAPE_DELIMITERS);
+        if (escapedText) {
+            output.value = escapedText;
+            logger.write("ok");
+        }
+        else {
+            logger.write("error");
+        }
         return true;
     },
 }
@@ -374,6 +412,18 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     part2escaped = escape(part2, escapeChars);
     out = part1 + part2escaped;
 
+    return out;
+}
+
+
+function TextConverter() {
+}
+
+TextConverter.prototype.escapeCharRepeatsByDelimeters = function(text, delimiters) {
+    /**
+     *
+     */
+    var out = text;
     return out;
 }
 
