@@ -421,10 +421,58 @@ function TextConverter() {
 
 TextConverter.prototype.escapeCharRepeatsByDelimeters = function(text, delimiters) {
     /**
+     * Escape in text repeating characters groups by delimiters.
+     *
+     * When there is a repeating group of one character is found in
+     * the text it is escaped by some algorithm:
+     * Every delimiter inserted after N characters where N is taken
+     * from the list [3, 2, 1, 2, 3, 1, 2, 1, 3, 2]. When the first
+     * delimiter went over all numbers list the second delimiter
+     * starts the numbers list from the beginning. When all delimiters
+     * from the delimiters list are used they are started again from
+     * the beginning. The delimiters list is cycled and the numbers
+     * list is cycled.
+     *
+     * @param {string} text The text with/without repeating characters groups.
+     * @param {string} delimiters List of delimiters for insertions into the text.
+     * @return {string} The text with characters repeats escaped by delimiters.
+     *
+     * Example:
+     * In:
+     *
+     * text:
+     * abcaaaaaaaaadef
+     * abcbbbbbbbbbbbbbbbdef
+     * abc111111111111111111111def
+     *
+     * delimiters:
+     * ["|"]
+     *
+     * Out:
+     *
+     * abcaaa|aa|a|aa|adef
+     * abcbbb|bb|b|bb|bbb|b|bb|bdef
+     * abc111|11|1|11|111|1|11|1|111|11|1def
      *
      */
-    var out = text;
-    return out;
+    var escaper = new StringEscaper();
+    return text.replace(/(.)\1{3,}/g, function(match) {
+        return escaper.escapeByStringsAndAmounts(
+            match,
+            delimiters,
+            [3, 2, 1, 2, 3, 1, 2, 1, 3, 2]);
+    });
+}
+
+
+function StringEscaper() {
+}
+
+StringEscaper.prototype.escapeByStringsAndAmounts = function(s, strings, amounts) {
+    /**
+     *
+     */
+    return s;
 }
 
 
