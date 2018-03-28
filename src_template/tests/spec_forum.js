@@ -223,3 +223,65 @@ describe("TextConverter methods", function() {
     });
 
 });
+
+describe("StringEscaper methods", function() {
+
+    describe("Method escapeByStringsAndAmounts()", function() {
+
+        var func = (new StringEscaper()).escapeByStringsAndAmounts;
+
+        it("Returns null on undefined input string", function() {
+            assert.isNull(func(undefined, ["b"], [1]));
+        });
+
+        it("Returns null on undefined esacaping strings", function() {
+            assert.isNull(func("aaa", undefined, [1]));
+        });
+
+        it("Returns null on undefined amounts", function() {
+            assert.isNull(func("aaa", ["b"], undefined));
+        });
+
+        it("Can escape with one amount", function() {
+            var i1 = "aaa";
+            var i2 = ["b"];
+            var i3 = [1];
+            var o = "ababa";
+            assert.equal(func(i1, i2, i3), o);
+        });
+
+        it("Can escape with two amounts", function() {
+            var i1 = "aaaaaaa";
+            var i2 = ["b"];
+            var i3 = [1, 2];
+            var o = "abaababaaba";
+            assert.equal(func(i1, i2, i3), o);
+        });
+
+        it("Can escape periodically by one string", function() {
+            var i1 = "aaa";
+            var i2 = ["b"];
+            var i3 = [1];
+            var o = "ababa";
+            assert.equal(func(i1, i2, i3), o);
+        });
+
+        it("Can escape periodically by two strings", function() {
+            var i1 = "aaaaa";
+            var i2 = ["b", "c"];
+            var i3 = [1];
+            var o = "abacabaca";
+            assert.equal(func(i1, i2, i3), o);
+        });
+
+        it("Can escape periodically by two strings and two amounts", function() {
+            var i1 = "aaaaaaaaaaaaa";
+            var i2 = ["b", "c"];
+            var i3 = [1, 2];
+            var o = "abaabacaacabaabacaaca";
+            assert.equal(func(i1, i2, i3), o);
+        });
+
+    });
+
+});
