@@ -206,3 +206,20 @@ describe("UrlEscaper methods", function() {
     });
 
 });
+
+describe("TextConverter methods", function() {
+
+    describe("Method escapeCharRepeatsByDelimeters()", function() {
+
+        var func = (new TextConverter()).escapeCharRepeatsByDelimeters;
+
+        it("Can escape characters group in text", function() {
+            var i1 = "abcaaaaaadef";
+            var i2 = ["|"];
+            var o = "abcaaa|aa|adef";
+            assert.equal(func(i1, i2), o);
+        });
+
+    });
+
+});
