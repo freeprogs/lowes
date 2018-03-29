@@ -28,6 +28,8 @@
  *
  */
 
+"use strict";
+
 var forum_object = {
     init: function() {
         /**
