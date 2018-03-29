@@ -213,6 +213,28 @@ describe("TextConverter methods", function() {
 
         var func = (new TextConverter()).escapeCharRepeatsByDelimeters;
 
+        it("Returns null on undefined text", function() {
+            assert.isNull(func(undefined, ["|"]));
+        });
+
+        it("Returns null on undefined delimiters", function() {
+            assert.isNull(func("abcaaaaaadef", undefined));
+        });
+
+        it("Can escape empty text", function() {
+            var i1 = "";
+            var i2 = ["|"];
+            var o = "";
+            assert.equal(func(i1, i2), o);
+        });
+
+        it("Can escape text by empty delimiters array", function() {
+            var i1 = "abcaaaaaadef";
+            var i2 = [];
+            var o = "abcaaaaaadef";
+            assert.equal(func(i1, i2), o);
+        });
+
         it("Can escape characters group in text", function() {
             var i1 = "abcaaaaaadef";
             var i2 = ["|"];
