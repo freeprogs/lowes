@@ -470,9 +470,57 @@ function StringEscaper() {
 
 StringEscaper.prototype.escapeByStringsAndAmounts = function(s, strings, amounts) {
     /**
+     * Escape in string s all characters, inserting strings over amounts.
      *
+     * The string is escaped by the algorithm:
+     * In the s string every string from the strings array inserted
+     * after N characters where N is taken from the amounts
+     * array. When the first string went over the amounts array the
+     * second string starts the amount array from the beginning. When
+     * all strings from the strings array are used they are started
+     * again from the beginning. The strings array is cycled and the
+     * amounts array is cycled.
+     *
+     * @param {string} s The input string.
+     * @param {object} strings Array of strings for insertions into the input string.
+     * @param {object} amounts Array of numbers for insertion gaps.
+     * @return {string} The input string with strings inserted over amounts.
+     *
+     * Example:
+     * In:  abcdefghij ["|", "@"] [1, 2]
+     * Out: a|bc|d@ef@g|hi|j
      */
-    return s;
+    if (s == undefined) {
+        return null;
+    }
+    if (strings == undefined) {
+        return null;
+    }
+    if (amounts == undefined) {
+        return null;
+    }
+    var state = 0;
+    var scuri = 0;
+    var acuri = 0;
+    var out = "";
+
+    while (s) {
+        if (s.length <= amounts[acuri]) {
+            out += s;
+            s = "";
+            break;
+        }
+        else {
+            out += s.slice(0, amounts[acuri]) + strings[scuri];
+            s = s.slice(amounts[acuri]);
+        }
+        acuri++;
+        if (acuri >= amounts.length) {
+            scuri = (scuri + 1 < strings.length) ? scuri + 1 : 0;
+            acuri = 0;
+        }
+    }
+    return out;
 }
 
 
