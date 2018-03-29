@@ -256,7 +256,7 @@ var forum_object = {
         }
         return true;
     },
-}
+};
 
 
 function NodeSearcher() {
@@ -272,7 +272,7 @@ NodeSearcher.prototype.searchById = function(id) {
     var node = document.getElementById(id);
     var out = node.firstElementChild;
     return out;
-}
+};
 
 
 function UrlConverter() {
@@ -301,7 +301,7 @@ UrlConverter.prototype.topicNewToOld = function(url) {
     }
     var out = parts[1] + parts[2] + "?sub=" + parts[3];
     return out;
-}
+};
 
 UrlConverter.prototype.msgPostNewToOld = function(url) {
     /**
@@ -328,7 +328,7 @@ UrlConverter.prototype.msgPostNewToOld = function(url) {
     var out = parts[1] + parts[2] + "?sub=" + parts[3]
         + "&post=" + parts[4] + "#" + parts[5];
     return out;
-}
+};
 
 UrlConverter.prototype.msgPostOldToLikes = function(url) {
     /**
@@ -354,7 +354,7 @@ UrlConverter.prototype.msgPostOldToLikes = function(url) {
     }
     var out = parts[1] + "-beta" + parts[2] + "likes/reply/" + parts[3] + "/";
     return out;
-}
+};
 
 
 function UrlEscaper() {
@@ -413,7 +413,7 @@ UrlEscaper.prototype.escapeCharsInPath = function(url, escapeChars) {
     out = part1 + part2escaped;
 
     return out;
-}
+};
 
 
 function TextConverter() {
@@ -471,7 +471,7 @@ TextConverter.prototype.escapeCharRepeatsByDelimeters = function(text, delimiter
             delimiters,
             [3, 2, 1, 2, 3, 1, 2, 1, 3, 2]);
     });
-}
+};
 
 
 function StringEscaper() {
@@ -530,7 +530,7 @@ StringEscaper.prototype.escapeByStringsAndAmounts = function(s, strings, amounts
         }
     }
     return out;
-}
+};
 
 
 function LabelLogger(node) {
@@ -549,7 +549,7 @@ LabelLogger.prototype.write = function(text) {
      * @param {string} text Text for writing.
      */
     this.node.innerHTML = text;
-}
+};
 
 
 function forum_main() {
@@ -711,4 +711,4 @@ function forum_connectAbout() {
     window.addEventListener("load", function(event) {
         forum_main();
     });
-}())
+}());
