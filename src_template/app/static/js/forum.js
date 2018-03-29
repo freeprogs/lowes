@@ -455,6 +455,15 @@ TextConverter.prototype.escapeCharRepeatsByDelimeters = function(text, delimiter
      * abc111|11|1|11|111|1|11|1|111|11|1def
      *
      */
+    if (text == undefined) {
+        return null;
+    }
+    if (delimiters == undefined) {
+        return null;
+    }
+    if (delimiters.length == 0) {
+        return text;
+    }
     var escaper = new StringEscaper();
     return text.replace(/(.)\1{3,}/g, function(match) {
         return escaper.escapeByStringsAndAmounts(
