@@ -713,4 +713,4 @@ function forum_connectAbout() {
     window.addEventListener("load", function(event) {
         forum_main();
     });
-}());
+})();
