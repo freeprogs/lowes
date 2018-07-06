@@ -20,3 +20,13 @@
 /* General styles */
 
 body { font-size: small; }
+
+div.js-hint {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: red;
+    background-color: #eee;
+    font-size: 2em;
+}
