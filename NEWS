@@ -12,6 +12,16 @@ Changed
 
 Fixed
 
+[0.7.1] - 2018-07-07
+
+Added
+
+Changed
+- The page is writing a message to the user to switch on JavaScript if
+  he has disabled the JavaScript in the browser.
+
+Fixed
+
 [0.7.0] - 2018-03-29
 
 Added
