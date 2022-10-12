@@ -208,6 +208,8 @@ uninstall:
 	systemctl disable $(SRC_APP_SERVICE)
 	rm -f $(SERVICE_INSTALL_DIR)/$(SRC_APP_SERVICE)
 
+	rm -f $(RUNAPPSH_INSTALL_DIR)/$(SRC_RUNAPP_SH)
+
 	rm -rf $(APP_INSTALL_DIR)/$(TARGET_APP_DIR)
 	rm -rf $(DOCS_INSTALL_DIR)
 
